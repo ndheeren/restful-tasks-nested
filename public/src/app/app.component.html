@@ -1,18 +1,44 @@
 <h1>Restful Tasks API</h1>
 
-<h2><p>tasks length: {{ tasks.length }}</p></h2>
-<ul *ngFor="let task of tasks">
-  <li>
-    {{task._id}}
+
+<button *ngIf="!showingAllTasks" (click)="showAllTasks()">Show All Tasks</button>
+
+<span *ngIf="taskIsSelected">
+    <h2>Selected Task</h2>
     <ul>
-      <li>Title: {{task.title}}</li>
-      <li>Description: {{task.description}}</li>
-      <li>Completed: {{task.completed}}</li>
-      <li>Created at: {{task.created_at}}</li>
-      <li>Updated at: {{task.updated_at}}</li>
+        <li>
+          {{selectedTask._id}}
+          <ul>
+            <li>Title: {{selectedTask.title}}</li>
+            <li>Description: {{selectedTask.description}}</li>
+            <li>Completed: {{selectedTask.completed}}</li>
+            <li>Created at: {{selectedTask.created_at}}</li>
+            <li>Updated at: {{selectedTask.updated_at}}</li>
+          </ul>
+        </li>
     </ul>
-  </li>
-</ul>
+    
+  </span>
+
+<span *ngIf="showingAllTasks">
+  <h2><p>tasks length: {{ tasks.length }}</p></h2>
+  <span *ngFor="let task of tasks">
+      <ul>
+        <li>
+          {{task._id}}
+          <ul>
+            <li>Title: {{task.title}}</li>
+            <li>Description: {{task.description}}</li>
+            <li>Completed: {{task.completed}}</li>
+            <li>Created at: {{task.created_at}}</li>
+            <li>Updated at: {{task.updated_at}}</li>
+          </ul>
+        </li>
+      </ul>
+      <button (click)="showThisTask(task._id)">Show This Task</button>
+  </span>
+
+</span>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
