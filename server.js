@@ -82,9 +82,15 @@ app.post('/tasks', (req, res) => {
     task.description = req.body.description;
     task.completed = req.body.completed;
     task.save()
-        .then(newTask => {
-            res.redirect('/');
-        })
+        .then(newTask => res.json(newTask))
+        // .then(newTask => {
+        //     // console.log('Reached point just prior to returning after task creation in server.js');
+        //     // console.log(`typeof(newTask) = ${typeof(newTask)}`);
+        //     // console.log(newTask);
+        //     // return newTask;
+            
+        //     //res.redirect('/');
+        // })
         .catch(err => {
             console.log("We have an error!", err);
             // adjust the code below as needed to create a flash message with the tag and content you would like
@@ -112,9 +118,10 @@ app.put('/tasks/:id', (req, res) => {
             task.description = req.body.description;
             task.completed = req.body.completed;
             task.save()
-                .then(editedTask => {
-                    res.redirect('/');
-                })
+                // .then(editedTask => {
+                //     res.redirect('/');
+                // })
+                .then(editedTask => res.json(editedTask))
                 .catch(err => {
                     console.log("We have an error!", err);
                     // adjust the code below as needed to create a flash message with the tag and content you would like
@@ -130,10 +137,11 @@ app.put('/tasks/:id', (req, res) => {
 // DELETE: Delete a Task by ID
 app.delete('/tasks/:id/', (req, res) => {
     Task.remove({_id: req.params.id})
-    .then(deletedTask => {
-        console.log(`DELETED A TASK!.`);
-        res.redirect('/');
-    })
+    // .then(deletedTask => {
+    //     console.log(`DELETED A TASK!.`);
+    //     res.redirect('/');
+    // })
+    .then(deletedTask => res.json(deletedTask))
     .catch(err => res.json(err));
 });
 

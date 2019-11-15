@@ -37,24 +37,32 @@ export class HttpService {
     return this._http.get(`/tasks/${id}`);
   }
 
-  // /tasks
-  createTask()
-  {
-    let tempObservable = this._http.get(`/tasks`);
-    tempObservable.subscribe(data => console.log(`Created a task!`, data));
+  // // /tasks
+  // createTask()
+  // {
+  //   let tempObservable = this._http.get(`/tasks`);
+  //   tempObservable.subscribe(data => console.log(`Created a task!`, data));
+  // }
+
+  addTask(newTask){
+    return this._http.post('/tasks', newTask)
   }
 
   // /tasks/:id
-  editTask(id: string)
+  editTask(taskToEdit)
   {
-    let tempObservable = this._http.get(`/tasks`);
-    tempObservable.subscribe(data => console.log(`Edited the task with ID of ${id}!`, data));
+    // let tempObservable = this._http.get(`/tasks`);
+    // tempObservable.subscribe(data => console.log(`Edited the task with ID of ${id}!`, data));
+
+    return this._http.put(`/tasks/${taskToEdit._id}`, taskToEdit);
   }
 
   // /tasks/:id/
   deleteTask(id: string)
   {
-    let tempObservable = this._http.get(`/tasks`);
-    tempObservable.subscribe(data => console.log(`Deleted the task with ID of ${id}!`, data));
+    // let tempObservable = this._http.get(`/tasks`);
+    // tempObservable.subscribe(data => console.log(`Deleted the task with ID of ${id}!`, data));
+
+    return this._http.delete(`/tasks/${id}/`);
   }
 }
