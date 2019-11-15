@@ -61,17 +61,22 @@ export class AppComponent implements OnInit {
 
   }
 
-  showThisTask(taskId)
+  showTask(task)
   {
     this.taskIsSelected = true;
-    
-    let observable = this._httpService.getTaskByID(taskId);
-    observable.subscribe(data => 
-      {
-        console.log(`Got the task with ID of ${taskId}`, data);
-        this.selectedTask = data;
-      });
+    this.selectedTask = task;
   }
+  // showThisTask(taskId)
+  // {
+  //   this.taskIsSelected = true;
+    
+  //   let observable = this._httpService.getTaskByID(taskId);
+  //   observable.subscribe(data => 
+  //     {
+  //       console.log(`Got the task with ID of ${taskId}`, data);
+  //       this.selectedTask = data;
+  //     });
+  // }
 
   submitTaskAddition() {
     // Code to send off the form data (this.newTask) to the Service
